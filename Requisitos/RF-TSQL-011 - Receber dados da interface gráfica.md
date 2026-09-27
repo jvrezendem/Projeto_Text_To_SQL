@@ -30,8 +30,8 @@ A interface gráfica é o ponto de entrada das perguntas, escolhas e solicitaç�
 
 ## Regras e limites
 
-- **Entradas/dados**: perguntas do usuário, seleção da arquitetura, solicitações de visualização, identificadores e demais parâmetros definidos no contrato da interface.
-- **Invariantes**: todos os dados recebidos da interface devem ser tratados como não confiáveis até sua validação; perguntas vazias devem respeitar [[RF-TSQL-002 - Ignorar pergunta vazia]]; a arquitetura deve respeitar [[RF-TSQL-010 - Escolher a arquitetura de geração da consulta]].
+- **Entradas/dados**: perguntas do usuário, solicitações de visualização, identificadores e demais parâmetros definidos no contrato da interface.
+- **Invariantes**: todos os dados recebidos da interface devem ser tratados como não confiáveis até sua validação; perguntas vazias devem respeitar [[RF-TSQL-002 - Ignorar pergunta vazia]]; toda pergunta válida deve ser encaminhada ao fluxo definido em [[RF-TSQL-015 - Processar a pergunta nas três arquiteturas]].
 - **Exceções/fallback**: mensagens inválidas devem ser rejeitadas sem chamar o LLM nem acessar o PostgreSQL.
 - **Fora do escopo**: definição visual dos componentes da interface, autenticação do usuário e armazenamento permanente do estado da tela.
 
@@ -39,7 +39,7 @@ A interface gráfica é o ponto de entrada das perguntas, escolhas e solicitaç�
 
 - **Método**: teste de contrato, teste funcional e teste de segurança.
 - **Evidência esperada**: testes com mensagens válidas, vazias, incompletas, malformadas, de tipo desconhecido e contendo valores inesperados.
-- **Objetivo/spec**: [[RF-TSQL-001 - Consultar dados em linguagem natural]], [[RF-TSQL-010 - Escolher a arquitetura de geração da consulta]] e [[RF-TSQL-005 - Visualizar a estrutura do banco de dados]].
+- **Objetivo/spec**: [[RF-TSQL-001 - Consultar dados em linguagem natural]], [[RF-TSQL-015 - Processar a pergunta nas três arquiteturas]] e [[RF-TSQL-005 - Visualizar a estrutura do banco de dados]].
 - **Tarefa/teste**: A definir.
 
 ## Questões abertas
@@ -52,5 +52,6 @@ A interface gráfica é o ponto de entrada das perguntas, escolhas e solicitaç�
 
 | Versão | Data | Alteração | Autor |
 |---|---|---|---|
+| 0.3 | 2026-09-27 | Remoção da seleção de arquitetura e encaminhamento obrigatório às três arquiteturas | Codex |
 | 0.2 | 2026-09-27 | Reclassificação de interface para requisito funcional e atualização do identificador | Codex |
 | 0.1 | 2026-09-27 | Criação | Codex |

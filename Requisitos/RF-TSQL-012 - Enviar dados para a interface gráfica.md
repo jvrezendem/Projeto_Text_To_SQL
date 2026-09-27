@@ -16,7 +16,7 @@
 
 ## Requisito
 
-> Quando **um fluxo solicitado pela interface gráfica produzir dados, estado ou erro**, o **sistema** deve **enviar uma resposta estruturada e compatível com o contrato da interface**, garantindo **que a interface consiga identificar a solicitação, interpretar o resultado e apresentá-lo ao usuário**.
+> Quando **um fluxo solicitado pela interface gráfica produzir dados, estados ou erros**, o **sistema** deve **enviar uma resposta estruturada e compatível com o contrato da interface, incluindo separadamente os resultados das três arquiteturas quando uma pergunta for processada**, garantindo **que a interface consiga identificar a solicitação, a origem de cada resultado e apresentá-los ao usuário**.
 
 ## Por quê
 
@@ -24,14 +24,14 @@ A interface gráfica depende das respostas do sistema para apresentar registros,
 
 ## Critérios de aceite
 
-- [ ] **Sucesso** — Dada uma solicitação processada com sucesso, quando o resultado estiver disponível, então o sistema deve enviar à interface uma resposta estruturada com o identificador da solicitação, o estado e os dados correspondentes.
-- [ ] **Fronteira** — Dado um resultado válido sem registros, quando a resposta for enviada, então o sistema deve representar explicitamente um conjunto vazio, sem convertê-lo em erro ou omitir o estado de sucesso.
-- [ ] **Falha** — Dada uma falha durante o processamento ou o envio da resposta, quando o sistema responder à interface, então deve fornecer um erro seguro e identificável, sem expor credenciais, prompts internos, comandos sensíveis ou detalhes técnicos desnecessários.
+- [ ] **Sucesso** — Dada uma pergunta processada com sucesso pelas três arquiteturas, quando os resultados estiverem disponíveis, então o sistema deve enviar à interface uma resposta estruturada com o identificador da solicitação, o estado e um resultado identificado para cada arquitetura.
+- [ ] **Fronteira** — Dado que uma arquitetura retorne um conjunto vazio, quando a resposta for enviada, então o sistema deve representar explicitamente esse resultado vazio, sem confundi-lo com os resultados das demais arquiteturas ou convertê-lo em erro.
+- [ ] **Falha** — Dada uma falha em uma arquitetura ou no envio da resposta, quando o sistema responder à interface, então deve identificar a arquitetura afetada e fornecer um erro seguro, sem expor credenciais, prompts internos, comandos sensíveis ou detalhes técnicos desnecessários.
 
 ## Regras e limites
 
-- **Entradas/dados**: registros consultados, metadados da estrutura, arquitetura utilizada, estado da operação, identificador da solicitação e erros seguros.
-- **Invariantes**: toda resposta deve seguir o contrato de saída; dados não autorizados e segredos não podem ser enviados; conjuntos vazios devem ser diferenciados de falhas; resultados devem respeitar [[RF-TSQL-006 - Visualizar os registros do banco de dados]].
+- **Entradas/dados**: registros consultados, metadados da estrutura, identificação de cada uma das três arquiteturas, estados das operações, identificador da solicitação e erros seguros.
+- **Invariantes**: toda resposta deve seguir o contrato de saída; os três resultados devem permanecer separados e identificados; dados não autorizados e segredos não podem ser enviados; conjuntos vazios devem ser diferenciados de falhas; resultados devem respeitar [[RF-TSQL-006 - Visualizar os registros do banco de dados]].
 - **Exceções/fallback**: se a interface estiver indisponível ou a resposta não puder ser entregue, o sistema deve registrar a falha de forma segura e não considerar a entrega concluída.
 - **Fora do escopo**: definição do layout visual, renderização dos componentes e armazenamento permanente dos dados pela interface.
 
@@ -39,7 +39,7 @@ A interface gráfica depende das respostas do sistema para apresentar registros,
 
 - **Método**: teste de contrato, teste funcional, teste de integração e teste de segurança.
 - **Evidência esperada**: respostas de teste para resultado com dados, conjunto vazio, processamento em andamento, erro de validação e falha interna, todas compatíveis com o contrato de saída.
-- **Objetivo/spec**: [[RF-TSQL-001 - Consultar dados em linguagem natural]], [[RF-TSQL-005 - Visualizar a estrutura do banco de dados]] e [[RF-TSQL-006 - Visualizar os registros do banco de dados]].
+- **Objetivo/spec**: [[RF-TSQL-001 - Consultar dados em linguagem natural]], [[RF-TSQL-005 - Visualizar a estrutura do banco de dados]], [[RF-TSQL-006 - Visualizar os registros do banco de dados]] e [[RF-TSQL-015 - Processar a pergunta nas três arquiteturas]].
 - **Tarefa/teste**: A definir.
 
 ## Questões abertas
@@ -52,5 +52,6 @@ A interface gráfica depende das respostas do sistema para apresentar registros,
 
 | Versão | Data | Alteração | Autor |
 |---|---|---|---|
+| 0.3 | 2026-09-27 | Inclusão do envio separado dos resultados das três arquiteturas | Codex |
 | 0.2 | 2026-09-27 | Reclassificação de interface para requisito funcional e atualização do identificador | Codex |
 | 0.1 | 2026-09-27 | Criação | Codex |

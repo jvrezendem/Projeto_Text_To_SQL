@@ -30,7 +30,7 @@ O LLM precisa receber a intenção do usuário, a organização dos dados dispon
 
 ## Regras e limites
 
-- **Entradas/dados**: pergunta em linguagem natural fornecida pelo usuário, contexto autorizado do banco de dados e conjunto de restrições definido pelo sistema para a arquitetura selecionada.
+- **Entradas/dados**: pergunta em linguagem natural fornecida pelo usuário, contexto autorizado do banco de dados e conjunto de restrições definido pelo sistema para cada uma das três arquiteturas executadas.
 - **Invariantes**: a pergunta não pode modificar o contexto nem as restrições; o contexto deve conter somente estruturas autorizadas e respeitar [[RF-TSQL-003 - Fornecer contexto do banco de dados ao LLM]]; as restrições devem exigir uma consulta de leitura e respeitar [[RF-TSQL-009 - Permitir somente consultas SELECT]]; perguntas vazias devem respeitar [[RF-TSQL-002 - Ignorar pergunta vazia]].
 - **Exceções/fallback**: se o contexto ou as restrições obrigatórias não puderem ser carregados, o prompt não deve ser enviado ao LLM.
 - **Fora do escopo**: obtenção e atualização dos metadados do banco, documentadas em [[RF-TSQL-003 - Fornecer contexto do banco de dados ao LLM]], e definição do catálogo de templates, documentada em [[RF-TSQL-004 - Gerar prompt com templates tradicionais]].
@@ -39,7 +39,7 @@ O LLM precisa receber a intenção do usuário, a organização dos dados dispon
 
 - **Método**: teste funcional, inspeção do prompt e teste de segurança.
 - **Evidência esperada**: prompts de teste contendo a pergunta, o contexto autorizado do banco e as restrições em campos distintos, incluindo um caso em que a pergunta tenta substituir as informações controladas pelo sistema.
-- **Objetivo/spec**: [[RF-TSQL-001 - Consultar dados em linguagem natural]], [[RF-TSQL-003 - Fornecer contexto do banco de dados ao LLM]], [[RF-TSQL-009 - Permitir somente consultas SELECT]] e [[RF-TSQL-010 - Escolher a arquitetura de geração da consulta]].
+- **Objetivo/spec**: [[RF-TSQL-001 - Consultar dados em linguagem natural]], [[RF-TSQL-003 - Fornecer contexto do banco de dados ao LLM]], [[RF-TSQL-009 - Permitir somente consultas SELECT]] e [[RF-TSQL-015 - Processar a pergunta nas três arquiteturas]].
 - **Tarefa/teste**: A definir.
 
 ## Questões abertas
@@ -53,5 +53,6 @@ O LLM precisa receber a intenção do usuário, a organização dos dados dispon
 
 | Versão | Data | Alteração | Autor |
 |---|---|---|---|
+| 0.3 | 2026-09-27 | Adequação da composição do prompt à execução obrigatória das três arquiteturas | Codex |
 | 0.2 | 2026-09-27 | Inclusão do contexto autorizado do banco de dados na composição do prompt | Codex |
 | 0.1 | 2026-09-27 | Criação | Codex |

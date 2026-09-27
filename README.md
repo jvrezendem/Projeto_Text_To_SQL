@@ -8,7 +8,7 @@ Permitir que o usuário escreva uma pergunta sobre os dados e receba os registro
 
 ## Arquiteturas de geração
 
-O projeto prevê três arquiteturas selecionáveis pelo usuário:
+O projeto prevê três arquiteturas executadas para cada pergunta do usuário:
 
 1. Tradução direta da pergunta com LLM.
 2. LLM com contexto autorizado da estrutura do banco de dados.
@@ -17,13 +17,15 @@ O projeto prevê três arquiteturas selecionáveis pelo usuário:
 ## Funcionalidades previstas
 
 - Receber perguntas em linguagem natural pela interface gráfica.
-- Permitir a escolha da arquitetura de geração da consulta.
+- Processar cada pergunta nas três arquiteturas e manter os resultados separados.
 - Compor o prompt com pergunta, contexto autorizado e restrições.
 - Gerar consultas SQL do tipo `SELECT`.
 - Bloquear comandos SQL não permitidos antes do acesso ao banco.
 - Conectar-se a um banco PostgreSQL em modo somente leitura.
 - Exibir a estrutura autorizada do banco de dados.
 - Exibir os registros autorizados retornados pelas consultas.
+- Exibir os três resultados obtidos e o gabarito da pergunta.
+- Exibir um comparativo do número de acertos das três arquiteturas.
 - Enviar resultados, estados e erros seguros para a interface gráfica.
 
 ## Requisitos
@@ -39,10 +41,14 @@ Os requisitos detalhados estão na pasta [`Requisitos`](./Requisitos):
 - [RF-TSQL-007 — Compor o prompt com pergunta, contexto e restrições](./Requisitos/RF-TSQL-007%20-%20Compor%20o%20prompt%20com%20a%20pergunta%20e%20as%20restrições.md)
 - [RF-TSQL-008 — Conectar ao banco de dados PostgreSQL](./Requisitos/RF-TSQL-008%20-%20Conectar%20ao%20banco%20de%20dados%20PostgreSQL.md)
 - [RF-TSQL-009 — Permitir somente consultas SELECT](./Requisitos/RF-TSQL-009%20-%20Permitir%20somente%20consultas%20SELECT.md)
-- [RF-TSQL-010 — Escolher a arquitetura de geração da consulta](./Requisitos/RF-TSQL-010%20-%20Escolher%20a%20arquitetura%20de%20geração%20da%20consulta.md)
 - [RF-TSQL-011 — Receber dados da interface gráfica](./Requisitos/RF-TSQL-011%20-%20Receber%20dados%20da%20interface%20gráfica.md)
 - [RF-TSQL-012 — Enviar dados para a interface gráfica](./Requisitos/RF-TSQL-012%20-%20Enviar%20dados%20para%20a%20interface%20gráfica.md)
+- [RF-TSQL-013 — Armazenar dados predefinidos do domínio de futebol](./Requisitos/RF-TSQL-013%20-%20Armazenar%20dados%20predefinidos%20do%20domínio%20de%20futebol.md)
+- [RF-TSQL-014 — Exibir os resultados obtidos e o gabarito](./Requisitos/RF-TSQL-014%20-%20Exibir%20o%20resultado%20obtido%20e%20o%20gabarito.md)
+- [RF-TSQL-015 — Processar a pergunta nas três arquiteturas](./Requisitos/RF-TSQL-015%20-%20Processar%20a%20pergunta%20nas%20três%20arquiteturas.md)
+- [RF-TSQL-016 — Exibir comparativo de acertos das três arquiteturas](./Requisitos/RF-TSQL-016%20-%20Exibir%20comparativo%20de%20acertos%20das%20três%20arquiteturas.md)
+- [RNF-TSQL-001 — Garantir acurácia mínima das três arquiteturas](./Requisitos/RNF-TSQL-001%20-%20Garantir%20acurácia%20mínima%20das%20três%20arquiteturas.md)
 
 ## Classificação
 
-Os requisitos atuais são funcionais (`RF`). Requisitos não funcionais (`RNF`) serão registrados separadamente quando houver uma obrigação principal de qualidade mensurável, como desempenho, disponibilidade, escalabilidade, confiabilidade ou usabilidade.
+O projeto utiliza requisitos funcionais (`RF`) e não funcionais (`RNF`). Os requisitos funcionais descrevem os comportamentos observáveis do sistema; os não funcionais estabelecem qualidades mensuráveis, como a acurácia das arquiteturas.
