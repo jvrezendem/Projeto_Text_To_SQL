@@ -1,18 +1,3 @@
----
-tipo: requisito
-area: TextToSQL
-status: proposto
-prioridade: Must
-versao: 0.2
-data: 2026-09-27
-responsavel: A definir
-tags:
-  - tipo/requisito
-fonte: História de usuário fornecida pelo solicitante
-objetivo_pai:
-metodo_verificacao: teste
----
-
 # [RF-TSQL-009] - Permitir somente consultas SELECT
 
 > [!info] Como usar
@@ -67,10 +52,3 @@ Uma saída gerada por LLM não deve ser considerada segura sem validação. Exec
 |---|---|---|---|
 | 0.2 | 2026-09-27 | Reclassificação de regra para requisito funcional e atualização do identificador | Codex |
 | 0.1 | 2026-09-27 | Criação | Codex |
-
-## Revisão rápida
-
-- [x] Há somente uma obrigação principal.
-- [x] Condição, comportamento e resultado são observáveis.
-- [x] Critérios cobrem sucesso, limite e falha.
-- [ ] Prioridade, origem, verificação e vínculo com a spec estão preenchidos.

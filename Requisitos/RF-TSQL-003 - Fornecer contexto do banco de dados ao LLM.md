@@ -1,18 +1,3 @@
----
-tipo: requisito
-area: TextToSQL
-status: proposto
-prioridade: Must
-versao: 0.1
-data: 2026-09-27
-responsavel: A definir
-tags:
-  - tipo/requisito
-fonte: História de usuário fornecida pelo solicitante
-objetivo_pai: "[[RF-TSQL-001 - Consultar dados em linguagem natural]]"
-metodo_verificacao: teste
----
-
 # [RF-TSQL-003] - Fornecer contexto do banco de dados ao LLM
 
 > [!info] Como usar
@@ -67,10 +52,3 @@ O LLM precisa conhecer a estrutura do banco para relacionar corretamente os term
 | Versão | Data | Alteração | Autor |
 |---|---|---|---|
 | 0.1 | 2026-09-27 | Criação | Codex |
-
-## Revisão rápida
-
-- [x] Há somente uma obrigação principal.
-- [x] Condição, comportamento e resultado são observáveis.
-- [x] Critérios cobrem sucesso, limite e falha.
-- [ ] Prioridade, origem, verificação e vínculo com a spec estão preenchidos.

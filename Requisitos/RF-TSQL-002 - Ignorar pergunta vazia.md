@@ -1,18 +1,3 @@
----
-tipo: requisito
-area: TextToSQL
-status: proposto
-prioridade: Must
-versao: 0.1
-data: 2026-09-27
-responsavel: A definir
-tags:
-  - tipo/requisito
-fonte: História de usuário fornecida pelo solicitante
-objetivo_pai:
-metodo_verificacao: teste
----
-
 # [RF-TSQL-002] - Ignorar pergunta vazia
 
 > [!info] Como usar
@@ -66,10 +51,3 @@ Entradas vazias não contêm intenção de consulta e consumiriam recursos sem p
 | Versão | Data | Alteração | Autor |
 |---|---|---|---|
 | 0.1 | 2026-09-27 | Criação | Codex |
-
-## Revisão rápida
-
-- [x] Há somente uma obrigação principal.
-- [x] Condição, comportamento e resultado são observáveis.
-- [x] Critérios cobrem sucesso, limite e falha.
-- [ ] Prioridade, origem, verificação e vínculo com a spec estão preenchidos.

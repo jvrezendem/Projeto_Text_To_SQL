@@ -1,18 +1,3 @@
----
-tipo: requisito
-area: TextToSQL
-status: proposto
-prioridade: Must
-versao: 0.2
-data: 2026-09-27
-responsavel: A definir
-tags:
-  - tipo/requisito
-fonte: História de usuário fornecida pelo solicitante
-objetivo_pai: "[[RF-TSQL-001 - Consultar dados em linguagem natural]]"
-metodo_verificacao: teste
----
-
 # [RF-TSQL-007] - Compor o prompt com pergunta, contexto e restrições
 
 > [!info] Como usar
@@ -70,10 +55,3 @@ O LLM precisa receber a intenção do usuário, a organização dos dados dispon
 |---|---|---|---|
 | 0.2 | 2026-09-27 | Inclusão do contexto autorizado do banco de dados na composição do prompt | Codex |
 | 0.1 | 2026-09-27 | Criação | Codex |
-
-## Revisão rápida
-
-- [x] Há somente uma obrigação principal.
-- [x] Condição, comportamento e resultado são observáveis.
-- [x] Critérios cobrem sucesso, limite e falha.
-- [ ] Prioridade, origem, verificação e vínculo com a spec estão preenchidos.

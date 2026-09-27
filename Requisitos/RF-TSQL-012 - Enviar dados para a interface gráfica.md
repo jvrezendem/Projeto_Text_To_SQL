@@ -1,18 +1,3 @@
----
-tipo: requisito
-area: TextToSQL
-status: proposto
-prioridade: Must
-versao: 0.2
-data: 2026-09-27
-responsavel: A definir
-tags:
-  - tipo/requisito
-fonte: História de usuário fornecida pelo solicitante
-objetivo_pai: "[[RF-TSQL-001 - Consultar dados em linguagem natural]]"
-metodo_verificacao: teste
----
-
 # [RF-TSQL-012] - Enviar dados para a interface gráfica
 
 > [!info] Como usar
@@ -69,10 +54,3 @@ A interface gráfica depende das respostas do sistema para apresentar registros,
 |---|---|---|---|
 | 0.2 | 2026-09-27 | Reclassificação de interface para requisito funcional e atualização do identificador | Codex |
 | 0.1 | 2026-09-27 | Criação | Codex |
-
-## Revisão rápida
-
-- [x] Há somente uma obrigação principal.
-- [x] Condição, comportamento e resultado são observáveis.
-- [x] Critérios cobrem sucesso, limite e falha.
-- [ ] Prioridade, origem, verificação e vínculo com a spec estão preenchidos.

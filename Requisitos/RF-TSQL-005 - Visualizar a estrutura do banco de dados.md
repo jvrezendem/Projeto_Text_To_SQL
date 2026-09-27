@@ -1,18 +1,3 @@
----
-tipo: requisito
-area: TextToSQL
-status: proposto
-prioridade: Must
-versao: 0.1
-data: 2026-09-27
-responsavel: A definir
-tags:
-  - tipo/requisito
-fonte: História de usuário fornecida pelo solicitante
-objetivo_pai:
-metodo_verificacao: teste
----
-
 # [RF-TSQL-005] - Visualizar a estrutura do banco de dados
 
 > [!info] Como usar
@@ -68,10 +53,3 @@ Conhecer a estrutura ajuda o usuário a compreender quais dados existem e como e
 | Versão | Data | Alteração | Autor |
 |---|---|---|---|
 | 0.1 | 2026-09-27 | Criação | Codex |
-
-## Revisão rápida
-
-- [x] Há somente uma obrigação principal.
-- [x] Condição, comportamento e resultado são observáveis.
-- [x] Critérios cobrem sucesso, limite e falha.
-- [ ] Prioridade, origem, verificação e vínculo com a spec estão preenchidos.
