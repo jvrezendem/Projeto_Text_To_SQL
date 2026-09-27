@@ -30,7 +30,7 @@ As três arquiteturas precisam demonstrar que conseguem interpretar perguntas co
 
 ## Regras e limites
 
-- **Entradas/dados**: banco PostgreSQL com a estrutura definida em [[RF-TSQL-013 - Armazenar dados predefinidos do domínio de futebol]], versão identificada do conjunto de dados, execução das três arquiteturas e as seguintes perguntas obrigatórias:
+- **Entradas/dados**: banco PostgreSQL com a estrutura definida em [[RF-TSQL-013 - Armazenar dados predefinidos do domínio de futebol]], versão identificada do conjunto de dados, execução das arquiteturas de LLM direto, LLM com contexto e templates/regex sem LLM, e as seguintes perguntas obrigatórias:
   1. **Quais são os jogadores do time Cruzeiro Esporte Clube?** — deve relacionar Jogador e Time e retornar somente os jogadores vinculados ao time cujo nome corresponde a “Cruzeiro Esporte Clube”.
   2. **Quais são os 3 jogadores com mais gols?** — deve relacionar Jogador e Gol, contar os gols por jogador, ordenar pela maior quantidade e retornar três jogadores conforme a regra de desempate aprovada.
   3. **Quais são os clubes com mais jogadores argentinos?** — deve relacionar Time e Jogador, considerar a nacionalidade argentina segundo a normalização aprovada, contar os jogadores por clube e ordenar os clubes pela maior quantidade.
@@ -44,7 +44,7 @@ As três arquiteturas precisam demonstrar que conseguem interpretar perguntas co
 
 - **Método**: teste automatizado de aceitação, comparação com consultas SQL de referência e inspeção das respostas.
 - **Evidência esperada**: matriz com 15 casos identificando pergunta, arquitetura, SQL gerado, resposta esperada, resposta obtida e estado aprovado ou reprovado; taxa de acerto igual a 15/15.
-- **Objetivo/spec**: [[RF-TSQL-001 - Consultar dados em linguagem natural]], [[RF-TSQL-003 - Fornecer contexto do banco de dados ao LLM]], [[RF-TSQL-004 - Gerar prompt com templates tradicionais]], [[RF-TSQL-013 - Armazenar dados predefinidos do domínio de futebol]] e [[RF-TSQL-015 - Processar a pergunta nas três arquiteturas]].
+- **Objetivo/spec**: [[RF-TSQL-001 - Consultar dados em linguagem natural]], [[RF-TSQL-003 - Fornecer contexto do banco de dados ao LLM]], [[RF-TSQL-004 - Gerar consulta com templates e regex]], [[RF-TSQL-013 - Armazenar dados predefinidos do domínio de futebol]] e [[RF-TSQL-015 - Processar a pergunta nas três arquiteturas]].
 - **Tarefa/teste**: A definir.
 
 ## Questões abertas
@@ -60,5 +60,6 @@ As três arquiteturas precisam demonstrar que conseguem interpretar perguntas co
 
 | Versão | Data | Alteração | Autor |
 |---|---|---|---|
+| 0.3 | 2026-09-27 | Definição explícita da arquitetura de templates e regex sem LLM | Codex |
 | 0.2 | 2026-09-27 | Adequação da avaliação à execução obrigatória das três arquiteturas | Codex |
 | 0.1 | 2026-09-27 | Criação | Codex |

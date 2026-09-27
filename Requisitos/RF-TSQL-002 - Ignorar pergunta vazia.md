@@ -16,22 +16,22 @@
 
 ## Requisito
 
-> Quando **o usuário tentar enviar uma pergunta vazia, nula ou composta somente por espaços**, o **sistema** deve **interromper o fluxo sem gerar prompt, chamar o LLM ou acessar o banco de dados**, garantindo **que nenhuma consulta seja processada sem conteúdo válido**.
+> Quando **o usuário tentar enviar uma pergunta vazia, nula ou composta somente por espaços**, o **sistema** deve **interromper o fluxo sem executar templates, expressões regulares, gerar prompts, chamar LLMs ou acessar o banco de dados**, garantindo **que nenhuma arquitetura processe uma entrada sem conteúdo válido**.
 
 ## Por quê
 
-Entradas vazias não contêm intenção de consulta e consumiriam recursos sem produzir um resultado útil. Interromper o fluxo evita chamadas desnecessárias ao LLM e ao banco de dados.
+Entradas vazias não contêm intenção de consulta e consumiriam recursos sem produzir um resultado útil. Interromper o fluxo evita o acionamento desnecessário das três arquiteturas e do banco de dados.
 
 ## Critérios de aceite
 
 - [ ] **Sucesso** — Dada uma pergunta com conteúdo válido, quando o usuário enviá-la, então o sistema deve permitir o início do fluxo de consulta.
 - [ ] **Fronteira** — Dada uma pergunta composta somente por espaços, tabulações ou quebras de linha, quando o usuário tentar enviá-la, então o sistema não deve iniciar nenhuma etapa do fluxo.
-- [ ] **Falha** — Dada uma entrada vazia ou nula, quando o envio for solicitado, então o sistema não deve gerar prompt, chamar o LLM nem acessar o banco de dados.
+- [ ] **Falha** — Dada uma entrada vazia ou nula, quando o envio for solicitado, então o sistema não deve executar templates ou regex, gerar prompt, chamar LLM nem acessar o banco de dados.
 
 ## Regras e limites
 
 - **Entradas/dados**: conteúdo informado no campo de pergunta.
-- **Invariantes**: o gerador de prompt, o LLM e o banco de dados não podem ser acionados para entradas sem conteúdo após a remoção de espaços.
+- **Invariantes**: templates, expressões regulares, geradores de prompt, LLMs e banco de dados não podem ser acionados para entradas sem conteúdo após a remoção de espaços.
 - **Exceções/fallback**: entradas que contenham somente caracteres de espaçamento devem ser tratadas como vazias.
 - **Fora do escopo**: validação semântica de perguntas preenchidas, mas sem relação com os dados disponíveis.
 
@@ -50,4 +50,5 @@ Entradas vazias não contêm intenção de consulta e consumiriam recursos sem p
 
 | Versão | Data | Alteração | Autor |
 |---|---|---|---|
+| 0.2 | 2026-09-27 | Inclusão do bloqueio da arquitetura baseada em templates e regex para entradas vazias | Codex |
 | 0.1 | 2026-09-27 | Criação | Codex |

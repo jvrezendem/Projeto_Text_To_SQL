@@ -16,11 +16,11 @@
 
 ## Requisito
 
-> Quando **o LLM gerar um comando SQL**, o **sistema** deve **validá-lo e permitir a execução somente se for uma consulta de leitura do tipo `SELECT`**, garantindo **que comandos não permitidos sejam bloqueados antes de chegar ao banco de dados e produzam uma mensagem de erro**.
+> Quando **qualquer uma das três arquiteturas gerar um comando SQL**, o **sistema** deve **validá-lo e permitir a execução somente se for uma consulta de leitura do tipo `SELECT`**, garantindo **que comandos não permitidos sejam bloqueados antes de chegar ao banco de dados e produzam uma mensagem de erro**.
 
 ## Por quê
 
-Uma saída gerada por LLM não deve ser considerada segura sem validação. Executar comandos de escrita ou de definição de estrutura pode alterar, apagar ou expor indevidamente os dados do sistema.
+Nenhuma saída SQL, seja produzida por LLM, template ou expressão regular, deve ser considerada segura sem validação. Executar comandos de escrita ou de definição de estrutura pode alterar, apagar ou expor indevidamente os dados do sistema.
 
 ## Critérios de aceite
 
@@ -30,7 +30,7 @@ Uma saída gerada por LLM não deve ser considerada segura sem validação. Exec
 
 ## Regras e limites
 
-- **Entradas/dados**: comando SQL produzido pelo LLM.
+- **Entradas/dados**: comando SQL produzido por qualquer arquitetura de Text-to-SQL.
 - **Invariantes**: nenhum comando reprovado pela validação pode ser enviado ao banco de dados; o acesso usado para consulta deve possuir somente permissões de leitura.
 - **Exceções/fallback**: se o comando não puder ser classificado com segurança, ele deve ser tratado como não permitido e bloqueado.
 - **Fora do escopo**: correção automática de comandos SQL reprovados.
@@ -50,5 +50,6 @@ Uma saída gerada por LLM não deve ser considerada segura sem validação. Exec
 
 | Versão | Data | Alteração | Autor |
 |---|---|---|---|
+| 0.3 | 2026-09-27 | Aplicação da validação às saídas de LLMs, templates e expressões regulares | Codex |
 | 0.2 | 2026-09-27 | Reclassificação de regra para requisito funcional e atualização do identificador | Codex |
 | 0.1 | 2026-09-27 | Criação | Codex |

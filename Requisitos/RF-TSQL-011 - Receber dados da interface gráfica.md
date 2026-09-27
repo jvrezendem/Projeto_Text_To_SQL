@@ -32,7 +32,7 @@ A interface gráfica é o ponto de entrada das perguntas, escolhas e solicitaç�
 
 - **Entradas/dados**: perguntas do usuário, solicitações de visualização, identificadores e demais parâmetros definidos no contrato da interface.
 - **Invariantes**: todos os dados recebidos da interface devem ser tratados como não confiáveis até sua validação; perguntas vazias devem respeitar [[RF-TSQL-002 - Ignorar pergunta vazia]]; toda pergunta válida deve ser encaminhada ao fluxo definido em [[RF-TSQL-015 - Processar a pergunta nas três arquiteturas]].
-- **Exceções/fallback**: mensagens inválidas devem ser rejeitadas sem chamar o LLM nem acessar o PostgreSQL.
+- **Exceções/fallback**: mensagens inválidas devem ser rejeitadas sem acionar templates, expressões regulares, LLMs ou o PostgreSQL.
 - **Fora do escopo**: definição visual dos componentes da interface, autenticação do usuário e armazenamento permanente do estado da tela.
 
 ## Verificação e rastreabilidade
@@ -52,6 +52,7 @@ A interface gráfica é o ponto de entrada das perguntas, escolhas e solicitaç�
 
 | Versão | Data | Alteração | Autor |
 |---|---|---|---|
+| 0.4 | 2026-09-27 | Inclusão explícita do bloqueio de templates e regex para mensagens inválidas | Codex |
 | 0.3 | 2026-09-27 | Remoção da seleção de arquitetura e encaminhamento obrigatório às três arquiteturas | Codex |
 | 0.2 | 2026-09-27 | Reclassificação de interface para requisito funcional e atualização do identificador | Codex |
 | 0.1 | 2026-09-27 | Criação | Codex |

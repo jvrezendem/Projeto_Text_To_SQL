@@ -30,7 +30,7 @@ O processamento obrigatório pelas três arquiteturas permite ao usuário compar
 
 ## Regras e limites
 
-- **Entradas/dados**: pergunta válida do usuário, mesma versão do banco de dados e configurações necessárias para tradução direta com LLM, LLM com contexto do banco e geração com templates tradicionais.
+- **Entradas/dados**: pergunta válida do usuário, mesma versão do banco de dados e configurações necessárias para tradução direta com LLM, LLM com contexto do banco e geração sem LLM por templates de escrita e/ou expressões regulares.
 - **Invariantes**: as três arquiteturas devem receber a mesma pergunta e consultar a mesma fotografia dos dados; cada resultado deve conservar a identificação de sua arquitetura; resultados não podem ser combinados, substituídos ou atribuídos a outra arquitetura; toda consulta deve respeitar [[RF-TSQL-009 - Permitir somente consultas SELECT]]; perguntas vazias devem respeitar [[RF-TSQL-002 - Ignorar pergunta vazia]].
 - **Exceções/fallback**: a falha de uma arquitetura não deve cancelar automaticamente as respostas já concluídas pelas outras; a interface deve distinguir resultado vazio, erro e processamento pendente.
 - **Fora do escopo**: permitir que o usuário selecione somente uma arquitetura, escolher automaticamente a melhor resposta e consolidar os três resultados em uma resposta única.
@@ -39,7 +39,7 @@ O processamento obrigatório pelas três arquiteturas permite ao usuário compar
 
 - **Método**: teste funcional, teste de integração e teste de contrato.
 - **Evidência esperada**: teste demonstrando uma única pergunta encaminhada às três arquiteturas e uma resposta contendo três resultados identificados; testes adicionais com resultado vazio e falha isolada de uma arquitetura.
-- **Objetivo/spec**: [[RF-TSQL-001 - Consultar dados em linguagem natural]], [[RF-TSQL-003 - Fornecer contexto do banco de dados ao LLM]], [[RF-TSQL-004 - Gerar prompt com templates tradicionais]], [[RF-TSQL-012 - Enviar dados para a interface gráfica]] e [[RF-TSQL-014 - Exibir o resultado obtido e o gabarito]].
+- **Objetivo/spec**: [[RF-TSQL-001 - Consultar dados em linguagem natural]], [[RF-TSQL-003 - Fornecer contexto do banco de dados ao LLM]], [[RF-TSQL-004 - Gerar consulta com templates e regex]], [[RF-TSQL-012 - Enviar dados para a interface gráfica]] e [[RF-TSQL-014 - Exibir o resultado obtido e o gabarito]].
 - **Tarefa/teste**: A definir.
 
 ## Questões abertas
@@ -53,4 +53,5 @@ O processamento obrigatório pelas três arquiteturas permite ao usuário compar
 
 | Versão | Data | Alteração | Autor |
 |---|---|---|---|
+| 0.2 | 2026-09-27 | Definição da terceira arquitetura como templates e regex sem uso de LLM | Codex |
 | 0.1 | 2026-09-27 | Criação | Codex |

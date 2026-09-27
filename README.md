@@ -12,7 +12,7 @@ O projeto prevê três arquiteturas executadas para cada pergunta do usuário:
 
 1. Tradução direta da pergunta com LLM.
 2. LLM com contexto autorizado da estrutura do banco de dados.
-3. Geração de prompt com templates tradicionais predefinidos.
+3. Geração direta de SQL com templates de escrita e/ou expressões regulares, sem uso de LLM.
 
 ## Funcionalidades previstas
 
@@ -35,7 +35,7 @@ Os requisitos detalhados estão na pasta [`Requisitos`](./Requisitos):
 - [RF-TSQL-001 — Consultar dados em linguagem natural](./Requisitos/RF-TSQL-001%20-%20Consultar%20dados%20em%20linguagem%20natural.md)
 - [RF-TSQL-002 — Ignorar pergunta vazia](./Requisitos/RF-TSQL-002%20-%20Ignorar%20pergunta%20vazia.md)
 - [RF-TSQL-003 — Fornecer contexto do banco de dados ao LLM](./Requisitos/RF-TSQL-003%20-%20Fornecer%20contexto%20do%20banco%20de%20dados%20ao%20LLM.md)
-- [RF-TSQL-004 — Gerar prompt com templates tradicionais](./Requisitos/RF-TSQL-004%20-%20Gerar%20prompt%20com%20templates%20tradicionais.md)
+- [RF-TSQL-004 — Gerar consulta com templates e regex](./Requisitos/RF-TSQL-004%20-%20Gerar%20consulta%20com%20templates%20e%20regex.md)
 - [RF-TSQL-005 — Visualizar a estrutura do banco de dados](./Requisitos/RF-TSQL-005%20-%20Visualizar%20a%20estrutura%20do%20banco%20de%20dados.md)
 - [RF-TSQL-006 — Visualizar os registros do banco de dados](./Requisitos/RF-TSQL-006%20-%20Visualizar%20os%20registros%20do%20banco%20de%20dados.md)
 - [RF-TSQL-007 — Compor o prompt com pergunta, contexto e restrições](./Requisitos/RF-TSQL-007%20-%20Compor%20o%20prompt%20com%20a%20pergunta%20e%20as%20restrições.md)
