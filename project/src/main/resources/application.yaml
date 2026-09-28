@@ -1,3 +1,10 @@
 spring:
   application:
     name: project
+  datasource:
+      url: ${BD_URL}
+      username: ${BD_USER}
+      password: ${BD_PASSWORD}
+
+server:
+  port: 8081
