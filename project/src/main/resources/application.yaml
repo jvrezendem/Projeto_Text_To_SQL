@@ -1,10 +1,16 @@
 spring:
   application:
     name: project
+
+  config:
+    import:
+      - optional:file:./.env[.properties]
+      - optional:file:./project/.env[.properties]
+
   datasource:
-      url: ${BD_URL}
-      username: ${BD_USER}
-      password: ${BD_PASSWORD}
+    url: ${BD_URL}
+    username: ${BD_USER}
+    password: ${BD_PASSWORD}
     
   jpa:
     hibernate:
