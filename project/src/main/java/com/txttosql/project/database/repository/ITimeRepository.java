@@ -8,4 +8,5 @@ import com.txttosql.project.database.models.Time;
 
 public interface ITimeRepository extends JpaRepository<Time, UUID> {
 
+    Time findByNome(String nome);
 }
