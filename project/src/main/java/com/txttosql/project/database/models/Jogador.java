@@ -17,13 +17,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.Builder;
 
 @Entity
 @Table(name = "jogador")
 @AllArgsConstructor 
 @NoArgsConstructor 
 @Getter 
-@Setter 
+@Setter
+@Builder
 public class Jogador {
 
     @Id

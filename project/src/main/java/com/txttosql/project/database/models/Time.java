@@ -1,6 +1,6 @@
 package com.txttosql.project.database.models;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Set;
 import java.util.UUID;
 
@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,7 +22,8 @@ import lombok.Setter;
 @AllArgsConstructor 
 @NoArgsConstructor 
 @Getter 
-@Setter 
+@Setter
+@Builder 
 public class Time {
     
     @Id 
@@ -38,7 +40,7 @@ public class Time {
     private String pais;
 
     @Column(name = "data_fundacao", nullable = false)
-    private LocalDateTime dataFundacao;   
+    private LocalDate dataFundacao;   
     
     @OneToMany(mappedBy = "time")
     private Set<Jogador> jogadores;
