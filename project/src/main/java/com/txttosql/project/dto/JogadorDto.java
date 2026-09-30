@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDate;
+
+import com.txttosql.project.database.models.Time;
+
 
 @AllArgsConstructor 
 @NoArgsConstructor 
@@ -17,8 +21,8 @@ import lombok.ToString;
 public class JogadorDto {
     
     private String nome;
-    private String dataNascimento;
+    private LocalDate dataNascimento;
     private String posicao;
     private String nacionalidade;
-    private String timeNome;
+    private String nomeTime;
 }

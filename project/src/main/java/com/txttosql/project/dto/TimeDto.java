@@ -1,5 +1,7 @@
 package com.txttosql.project.dto;
 
+import java.time.LocalDate;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,4 +22,5 @@ public class TimeDto {
     private String cidade;
     private String estado;
     private String pais;
+    private LocalDate fundacao;
 }
