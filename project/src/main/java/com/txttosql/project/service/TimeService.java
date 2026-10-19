@@ -39,7 +39,7 @@ public class TimeService {
     }
 
     public void deleteTimeById(UUID id){
-        timeRepository.deleteById(id);;
+        timeRepository.deleteById(id);
     }
 
 
