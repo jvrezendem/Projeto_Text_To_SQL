@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.txttosql.project.database.models.Jogador;
 
-public interface IJogadorRepository extends JpaRepository<Jogador, UUID>{
+public interface IJogadorRepository extends JpaRepository<Jogador, UUID> {
+
+    public Jogador findByNome(String nome);
 
 }
