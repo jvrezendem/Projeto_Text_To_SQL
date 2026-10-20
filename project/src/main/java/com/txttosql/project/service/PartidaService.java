@@ -20,10 +20,10 @@ public class PartidaService {
     public void createPartida(PartidaDto partidaDto) {
         partidaRepository.save(Partida.builder()
                 .data(partidaDto.getData())
-                .local(partidaDto.getLocal())
-                .timeCasa(timeService.findByNome(partidaDto.getTimeCasa()))
-                .timeVisitante(timeService.findByNome(partidaDto.getTimeVisitante()))
-                .campeonato(campeonatoService.findByNome(partidaDto.getCampeonato()))
+                .gols(partidaDto.getGols())
+                .timeCasa(timeService.findByNome(partidaDto.getTimeCasaNome()))
+                .timeVisitante(timeService.findByNome(partidaDto.getTimeVisitanteNome()))
+                .campeonato(campeonatoService.findByNome(partidaDto.getCampeonatoNome()))
                 .build());
     }
 

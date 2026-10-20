@@ -9,13 +9,16 @@ import com.txttosql.project.database.models.Gol;
 import com.txttosql.project.database.repository.IGolRepository;
 import com.txttosql.project.dto.GolDto;
 
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 
 @Service 
-@RequiredArgsConstructor 
+@RequiredArgsConstructor
 public class GolService {
 
     private final IGolRepository golRepository;
+    private final JogadorService jogadorService;
+    private final PartidaService partidaService;
 
     public void deleteGolById(UUID id) {
         golRepository.deleteById(id);
@@ -32,8 +35,8 @@ public class GolService {
     public void createGol(GolDto golDto) {
         golRepository.save(Gol.builder()
                 .minuto(golDto.getMinuto())
-                .jogador(jogadorService.findByNome(golDto.getNomeJogador()))
-                .partida(partidaService.findById(golDto.getIdPartida()))
+                .jogador(jogadorService.findByNome(golDto.getJogadorNome()))
+                .partida(partidaService.findById(golDto.getPartidaId()))
                 .build());
     }
 

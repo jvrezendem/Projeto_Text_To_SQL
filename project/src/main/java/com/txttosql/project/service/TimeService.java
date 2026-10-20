@@ -34,6 +34,7 @@ public class TimeService {
         timeRepository.save(Time.builder()
                 .nome(timeDto.getNome())
                 .pais(timeDto.getPais())
+                .cidade(timeDto.getCidade())
                 .dataFundacao(timeDto.getFundacao())
                 .build());
     }
