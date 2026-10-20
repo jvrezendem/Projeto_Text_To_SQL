@@ -11,11 +11,13 @@ import com.txttosql.project.dto.PartidaDto;
 
 import lombok.RequiredArgsConstructor;
 
-@Service 
-@RequiredArgsConstructor 
+@Service
+@RequiredArgsConstructor
 public class PartidaService {
 
     private final IPartidaRepository partidaRepository;
+    private final TimeService timeService;
+    private final CampeonatoService campeonatoService;
 
     public void createPartida(PartidaDto partidaDto) {
         partidaRepository.save(Partida.builder()
@@ -38,6 +40,5 @@ public class PartidaService {
     public List<Partida> getAllPartidas() {
         return partidaRepository.findAll();
     }
-
 
 }

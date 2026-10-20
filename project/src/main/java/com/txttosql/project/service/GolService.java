@@ -11,7 +11,7 @@ import com.txttosql.project.dto.GolDto;
 
 import lombok.RequiredArgsConstructor;
 
-@Service 
+@Service
 @RequiredArgsConstructor
 public class GolService {
 
@@ -35,9 +35,8 @@ public class GolService {
         golRepository.save(Gol.builder()
                 .minuto(golDto.getMinuto())
                 .jogador(jogadorService.findByNome(golDto.getJogadorNome()))
-                .partida(partidaService.findById(golDto.getPartidaId()))
+                .partida(partidaService.getPartidaById(golDto.getPartidaId()))
                 .build());
     }
-
 
 }
