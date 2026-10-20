@@ -29,7 +29,7 @@ import lombok.Builder;
 public class Jogador {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column( nullable = false, length = 100)

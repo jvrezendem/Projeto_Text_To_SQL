@@ -27,7 +27,7 @@ import lombok.Setter;
 public class Time {
     
     @Id 
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @GeneratedValue(strategy=GenerationType.UUID)
     private UUID id;
 
     @Column(name = "nome", nullable = false, length = 100)
