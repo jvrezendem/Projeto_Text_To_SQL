@@ -13,7 +13,7 @@ import com.txttosql.project.dto.JogadorDto;
 import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor  
+@RequiredArgsConstructor
 public class JogadorService {
 
     private final IJogadorRepository jogadorRepository;
@@ -54,5 +54,9 @@ public class JogadorService {
 
     public void deleteJogador(UUID id) {
         jogadorRepository.deleteById(id);
+    }
+
+    public Jogador findByNome(String nome) {
+        return jogadorRepository.findByNome(nome);
     }
 }
