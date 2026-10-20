@@ -15,6 +15,7 @@ import com.txttosql.project.database.models.Partida;
 import com.txttosql.project.dto.PartidaDto;
 import com.txttosql.project.service.PartidaService;
 
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.AllArgsConstructor;
 
 @RestController 
@@ -40,7 +41,7 @@ public class PartidaController {
     }
 
     @PostMapping ("/createPartida")
-    public ResponseEntity<Void> createPartida(PartidaDto partidaDto) {
+    public ResponseEntity<Void> createPartida(@RequestBody PartidaDto partidaDto) {
         partidaService.createPartida(partidaDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
