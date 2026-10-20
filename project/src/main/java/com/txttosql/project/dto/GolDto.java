@@ -1,5 +1,7 @@
 package com.txttosql.project.dto;
 
+import java.util.UUID;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,7 +19,7 @@ import lombok.ToString;
 public class GolDto {
     
     private String jogadorNome;
-    private String partidaData;
+    private UUID partidaId;
     private String campeonatoNome;
     private String timeNome;
     private int minuto;
