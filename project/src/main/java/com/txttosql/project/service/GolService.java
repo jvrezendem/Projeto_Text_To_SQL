@@ -9,7 +9,6 @@ import com.txttosql.project.database.models.Gol;
 import com.txttosql.project.database.repository.IGolRepository;
 import com.txttosql.project.dto.GolDto;
 
-import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 
 @Service 

@@ -9,9 +9,6 @@ import lombok.ToString;
 
 import java.time.LocalDate;
 
-import com.txttosql.project.database.models.Time;
-
-
 @AllArgsConstructor 
 @NoArgsConstructor 
 @Getter 
