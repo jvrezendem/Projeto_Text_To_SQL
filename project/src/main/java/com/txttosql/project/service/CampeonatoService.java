@@ -12,7 +12,7 @@ import com.txttosql.project.dto.CampeonatoDto;
 import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor 
+@RequiredArgsConstructor
 public class CampeonatoService {
 
     private final ICampeonatoRepository campeonatoRepository;
@@ -36,5 +36,9 @@ public class CampeonatoService {
     public List<Campeonato> getAllCampeonatos() {
         return campeonatoRepository.findAll();
     }
-    
+
+    public Campeonato findByNome(String nome) {
+        return campeonatoRepository.findByNome(nome);
+    }
+
 }
