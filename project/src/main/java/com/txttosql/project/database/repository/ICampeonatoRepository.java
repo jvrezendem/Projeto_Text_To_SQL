@@ -8,4 +8,6 @@ import com.txttosql.project.database.models.Campeonato;
 
 public interface ICampeonatoRepository extends JpaRepository<Campeonato, UUID> {
 
+    public Campeonato findByNome(String nome);
+
 }
