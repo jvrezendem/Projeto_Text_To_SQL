@@ -23,10 +23,13 @@ public class GroqAiService {
     private final ChatClient chatClient;
 
     private final SqlExecutionService sqlExecutionService;
+    private final DataBseContextService dataBseContextService;
 
-    public GroqAiService(ChatClient.Builder builder, SqlExecutionService sqlExecutionService) {
+    public GroqAiService(ChatClient.Builder builder, SqlExecutionService sqlExecutionService,
+            DataBseContextService dataBseContextService) {
         this.chatClient = builder.build();
         this.sqlExecutionService = sqlExecutionService;
+        this.dataBseContextService = dataBseContextService;
     }
 
     public RespostaResponseDto fazerPergunta(PerguntaRequestDto perguntaDto) {
@@ -63,6 +66,32 @@ public class GroqAiService {
 
     public ResultadoArqResponseDto txtToSqlContext(PerguntaRequestDto pergunta) {
 
+        String contexto = dataBseContextService.migrationReader();
+
+        String promptNoContext = """
+                Você é um experto em SQL.
+                Sua tarefa é retornar um SQL que responda à pergunta feita pelo usuário.
+                Regras obrigatórias:
+                - gere somente uma consulta SELECT;
+                - nunca gere INSERT, UPDATE, DELETE, DROP, ALTER, CREATE ou TRUNCATE;
+                - não utilize comentários;
+                - não utilize múltiplos comandos;
+                - retorne apenas o SQL;
+                - não utilize Markdown ou blocos de código.
+                - utilize o contexto abaixo para gerar o SQL.
+
+                contexto: %s
+                """.formatted(contexto);
+
+        String comandoSql = chatClient
+                .prompt(promptNoContext)
+                .user(pergunta.pergunta())
+                .call()
+                .content();
+
+        return new ResultadoArqResponseDto(pergunta.pergunta(), tratamentoSql(comandoSql),
+                sqlExecutionService.executarSQL(tratamentoSql(comandoSql)));
+
     }
 
     private String tratamentoSql(String sqlNaotratado) {
@@ -83,7 +112,6 @@ public class GroqAiService {
                 "revoke",
                 "copy",
                 "call",
-                "do",
                 "execute");
 
         if (!comandosIlegais.stream().anyMatch(sqlNoSpaces.toLowerCase()::contains)) {
