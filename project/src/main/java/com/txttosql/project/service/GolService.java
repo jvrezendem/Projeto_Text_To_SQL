@@ -1,6 +1,7 @@
 package com.txttosql.project.service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -37,6 +38,10 @@ public class GolService {
                 .jogador(jogadorService.findByNome(golDto.jogadorNome()))
                 .partida(partidaService.getPartidaById(golDto.partidaId()))
                 .build());
+    }
+
+    public Set<Gol> getGolsByPartidaId(UUID partidaId) {
+        return golRepository.findByPartidaId(partidaId);
     }
 
 }
