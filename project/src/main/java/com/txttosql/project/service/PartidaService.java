@@ -22,7 +22,8 @@ public class PartidaService {
     public void createPartida(PartidaDto partidaDto) {
         partidaRepository.save(Partida.builder()
                 .data(partidaDto.data())
-                .gols(partidaDto.gols())
+                .golCasa(partidaDto.golCasa())
+                .golVisitante(partidaDto.golVisitante())
                 .timeCasa(timeService.findByNome(partidaDto.timeCasaNome()))
                 .timeVisitante(timeService.findByNome(partidaDto.timeVisitanteNome()))
                 .campeonato(campeonatoService.findByNome(partidaDto.campeonatoNome()))
