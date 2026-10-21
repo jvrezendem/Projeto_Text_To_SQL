@@ -19,34 +19,39 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-@Entity 
+@Entity
 @Table(name = "partida")
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter 
+@Getter
 @Setter
-@Builder 
+@Builder
 public class Partida {
 
-    @Id 
+    @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column (nullable = false, length = 100)
+    @Column(nullable = false, length = 100)
     private LocalDate data;
 
-    @ManyToOne 
-    @JoinColumn (name = "campeonato_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "campeonato_id", nullable = false)
     private Campeonato campeonato;
 
-    @ManyToOne 
+    @ManyToOne
     @JoinColumn(name = "time_casa_id", nullable = false)
     private Time timeCasa;
 
     @ManyToOne
     @JoinColumn(name = "time_visitante_id", nullable = false)
     private Time timeVisitante;
+
+    @Column(name = "gols_casa")
+    private Integer golCasa;
+
+    @Column(name = "gols_visitante")
+    private Integer golVisitante;
 
     @OneToMany(mappedBy = "partida")
     private Set<Gol> gols;
