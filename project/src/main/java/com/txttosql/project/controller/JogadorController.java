@@ -20,7 +20,7 @@ import com.txttosql.project.service.JogadorService;
 import lombok.AllArgsConstructor;
 
 @RestController
-@AllArgsConstructor 
+@AllArgsConstructor
 @RequestMapping("v1/jogador")
 public class JogadorController {
 
@@ -37,14 +37,13 @@ public class JogadorController {
 
         Jogador jogador = jogadorService.getJogadorById(id);
 
-        if(jogador != null) {
-            JogadorDto jogadorDto = JogadorDto.builder()
-                    .nome(jogador.getNome())
-                    .dataNascimento(jogador.getDataNascimento())
-                    .posicao(jogador.getPosicao())
-                    .nacionalidade(jogador.getNacionalidade())
-                    .nomeTime(jogador.getTime().getNome())
-                    .build();
+        if (jogador != null) {
+            JogadorDto jogadorDto = new JogadorDto(
+                    jogador.getNome(),
+                    jogador.getDataNascimento(),
+                    jogador.getPosicao(),
+                    jogador.getNacionalidade(),
+                    jogador.getTime().getNome());
             return new ResponseEntity<>(jogadorDto, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -56,11 +55,11 @@ public class JogadorController {
         jogadorService.createJogador(jogadorDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-    
-    @DeleteMapping ("/deleteJogador/{id}")
+
+    @DeleteMapping("/deleteJogador/{id}")
     public ResponseEntity<Void> deleteJogador(@PathVariable UUID id) {
         jogadorService.deleteJogador(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    
+
 }

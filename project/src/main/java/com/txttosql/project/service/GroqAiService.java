@@ -4,6 +4,9 @@ import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.txttosql.project.dto.Request.PerguntaRequestDto;
+import com.txttosql.project.dto.Response.RespostaResponseDto;
+
 @Service
 public class GroqAiService {
 
@@ -20,8 +23,11 @@ public class GroqAiService {
         this.chatClient = builder.build();
     }
 
-    public String fazerPergunta(String prompt) {
-
-        return chatClient.prompt().user(prompt).call().content();
+    public RespostaResponseDto fazerPergunta(PerguntaRequestDto perguntaDto) {
+        return new RespostaResponseDto(perguntaDto.pergunta(), chatClient
+                .prompt()
+                .user(perguntaDto.pergunta())
+                .call()
+                .content());
     }
 }

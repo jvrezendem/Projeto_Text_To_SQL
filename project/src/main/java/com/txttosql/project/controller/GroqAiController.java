@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.txttosql.project.dto.Request.PerguntaRequestDto;
+import com.txttosql.project.dto.Response.RespostaResponseDto;
 import com.txttosql.project.service.GroqAiService;
 import lombok.AllArgsConstructor;
 
@@ -18,8 +20,8 @@ public class GroqAiController {
     private final GroqAiService groqAiService;
 
     @PostMapping("/perguntar")
-    public ResponseEntity<String> perguntar(@RequestBody String pergunta) {
-        String resposta = groqAiService.fazerPergunta(pergunta);
+    public ResponseEntity<RespostaResponseDto> perguntar(@RequestBody PerguntaRequestDto pergunta) {
+        RespostaResponseDto resposta = groqAiService.fazerPergunta(pergunta);
         return new ResponseEntity<>(resposta, HttpStatus.OK);
     }
 }
