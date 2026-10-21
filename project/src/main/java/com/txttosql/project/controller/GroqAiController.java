@@ -32,4 +32,10 @@ public class GroqAiController {
     public ResponseEntity<ResultadoArqResponseDto> perguntarNoContext(@Valid @RequestBody PerguntaRequestDto pergunta) {
         return new ResponseEntity<>(groqAiService.txtToSqlNoContext(pergunta), HttpStatus.OK);
     }
+
+    @PostMapping("/perguntarContext")
+    public ResponseEntity<ResultadoArqResponseDto> perguntarContext(
+            @Valid @RequestBody PerguntaRequestDto pergunta) {
+        return new ResponseEntity<>(groqAiService.txtToSqlContext(pergunta), HttpStatus.OK);
+    }
 }
