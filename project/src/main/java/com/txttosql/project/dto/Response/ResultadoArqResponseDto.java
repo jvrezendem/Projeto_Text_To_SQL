@@ -1,13 +1,12 @@
 package com.txttosql.project.dto.Response;
 
-import java.util.Set;
+import java.util.List;
+import java.util.Map;
 
 import jakarta.validation.constraints.NotNull;
 
 public record ResultadoArqResponseDto(
-        @NotNull String pergunta,
-        @NotNull String sql,
-        @NotNull Set<String> registros_encontrados,
-        @NotNull String resultado) {
-
+                @NotNull String pergunta,
+                @NotNull String sql,
+                @NotNull List<Map<String, Object>> registros_encontrados) {
 }
