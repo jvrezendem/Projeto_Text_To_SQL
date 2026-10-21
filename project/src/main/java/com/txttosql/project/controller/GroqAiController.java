@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.txttosql.project.dto.Request.PerguntaRequestDto;
 import com.txttosql.project.dto.Response.RespostaResponseDto;
+import com.txttosql.project.dto.Response.ResultadoArqResponseDto;
 import com.txttosql.project.service.GroqAiService;
 
 import jakarta.validation.Valid;
@@ -25,5 +26,10 @@ public class GroqAiController {
     public ResponseEntity<RespostaResponseDto> perguntar(@Valid @RequestBody PerguntaRequestDto pergunta) {
         RespostaResponseDto resposta = groqAiService.fazerPergunta(pergunta);
         return new ResponseEntity<>(resposta, HttpStatus.OK);
+    }
+
+    @PostMapping("/perguntarNoContext")
+    public ResponseEntity<ResultadoArqResponseDto> perguntarNoContext(@Valid @RequestBody PerguntaRequestDto pergunta) {
+        return new ResponseEntity<>(groqAiService.txtToSqlNoContext(pergunta), HttpStatus.OK);
     }
 }
