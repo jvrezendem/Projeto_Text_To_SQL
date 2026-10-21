@@ -1,5 +1,7 @@
 package com.txttosql.project.dto.Response;
 
-public record RespostaResponseDto(String pergunta, String resposta) {
+import jakarta.validation.constraints.NotNull;
+
+public record RespostaResponseDto(@NotNull String pergunta, @NotNull String resposta) {
 
 }

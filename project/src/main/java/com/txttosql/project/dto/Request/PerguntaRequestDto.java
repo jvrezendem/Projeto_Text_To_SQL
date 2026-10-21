@@ -1,5 +1,7 @@
 package com.txttosql.project.dto.Request;
 
-public record PerguntaRequestDto(String pergunta) {
+import jakarta.validation.constraints.NotNull;
+
+public record PerguntaRequestDto(@NotNull String pergunta) {
 
 }
