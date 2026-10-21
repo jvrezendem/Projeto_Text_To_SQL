@@ -1,5 +1,6 @@
 package com.txttosql.project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,37 +20,59 @@ import com.txttosql.project.service.TimeService;
 
 import lombok.AllArgsConstructor;
 
-@RestController 
-@AllArgsConstructor 
-@RequestMapping ("v1/time")
+@RestController
+@AllArgsConstructor
+@RequestMapping("v1/time")
 public class TimeController {
 
     private final TimeService timeService;
 
     @GetMapping("/allTimes")
-    public ResponseEntity<List<Time>> getAllTimes() {
-    
-        return new ResponseEntity<>(timeService.getAllTimes(), HttpStatus.OK);
+    public ResponseEntity<List<TimeDto>> getAllTimes() {
+
+        List<TimeDto> timesDto = new ArrayList<>();
+        for (Time time : timeService.getAllTimes()) {
+            timesDto.add(new TimeDto(
+                    time.getNome(),
+                    time.getCidade(),
+                    time.getPais(),
+                    time.getDataFundacao()));
+        }
+        return new ResponseEntity<>(timesDto, HttpStatus.OK);
     }
 
     @GetMapping("/timeById/{id}")
-    public ResponseEntity<Time> getTimeById(@PathVariable UUID id) {
+    public ResponseEntity<TimeDto> getTimeById(@PathVariable UUID id) {
         Time time = timeService.getTimeById(id);
-        if (time != null) {
-            return new ResponseEntity<>(time, HttpStatus.OK);
-        } else {
+
+        if (time == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+
+        TimeDto timeDto = new TimeDto(
+                time.getNome(),
+                time.getCidade(),
+                time.getPais(),
+                time.getDataFundacao());
+
+        return new ResponseEntity<>(timeDto, HttpStatus.OK);
     }
 
-    @GetMapping ("/timeByNome/{nome}")
-    public ResponseEntity<Time> getTimeByNome(@PathVariable String nome) {
+    @GetMapping("/timeByNome/{nome}")
+    public ResponseEntity<TimeDto> getTimeByNome(@PathVariable String nome) {
         Time time = timeService.findByNome(nome);
-        if (time != null) {
-            return new ResponseEntity<>(time, HttpStatus.OK);
-        } else {
+
+        if (time == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+
+        TimeDto timeDto = new TimeDto(
+                time.getNome(),
+                time.getCidade(),
+                time.getPais(),
+                time.getDataFundacao());
+
+        return new ResponseEntity<>(timeDto, HttpStatus.OK);
     }
 
     @PostMapping("/createTime")
@@ -58,12 +81,10 @@ public class TimeController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-
-    @DeleteMapping ("/deleteTime/{id}")
+    @DeleteMapping("/deleteTime/{id}")
     public ResponseEntity<Void> deleteTimeById(UUID id) {
         timeService.deleteTimeById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 
 }

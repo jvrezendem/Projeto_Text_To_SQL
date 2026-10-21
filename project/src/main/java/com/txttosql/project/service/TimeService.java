@@ -18,16 +18,20 @@ public class TimeService {
     private final ITimeRepository timeRepository;
 
     public List<Time> getAllTimes() {
-        return timeRepository.findAll();
+        List<Time> times = timeRepository.findAll();
+
+        return times;
     }
 
     public Time getTimeById(UUID id) {
-        return timeRepository.findById(id).orElse(null);
+        Time time = timeRepository.findById(id).orElse(null);
+        return time;
     }
 
     // usado no service de jogador
     public Time findByNome(String nome) {
-        return timeRepository.findByNome(nome);
+        Time time = timeRepository.findByNome(nome);
+        return time;
     }
 
     public void createTime(TimeDto timeDto) {
