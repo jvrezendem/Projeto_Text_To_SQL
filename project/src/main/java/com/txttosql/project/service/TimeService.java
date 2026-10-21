@@ -11,8 +11,8 @@ import com.txttosql.project.dto.TimeDto;
 
 import lombok.RequiredArgsConstructor;
 
-@Service 
-@RequiredArgsConstructor 
+@Service
+@RequiredArgsConstructor
 public class TimeService {
 
     private final ITimeRepository timeRepository;
@@ -25,23 +25,22 @@ public class TimeService {
         return timeRepository.findById(id).orElse(null);
     }
 
-    //usado no service de jogador
+    // usado no service de jogador
     public Time findByNome(String nome) {
         return timeRepository.findByNome(nome);
     }
 
     public void createTime(TimeDto timeDto) {
         timeRepository.save(Time.builder()
-                .nome(timeDto.getNome())
-                .pais(timeDto.getPais())
-                .cidade(timeDto.getCidade())
-                .dataFundacao(timeDto.getFundacao())
+                .nome(timeDto.nome())
+                .pais(timeDto.pais())
+                .cidade(timeDto.cidade())
+                .dataFundacao(timeDto.fundacao())
                 .build());
     }
 
-    public void deleteTimeById(UUID id){
+    public void deleteTimeById(UUID id) {
         timeRepository.deleteById(id);
     }
-
 
 }

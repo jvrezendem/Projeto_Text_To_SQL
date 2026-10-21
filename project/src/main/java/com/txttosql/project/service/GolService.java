@@ -33,9 +33,9 @@ public class GolService {
 
     public void createGol(GolDto golDto) {
         golRepository.save(Gol.builder()
-                .minuto(golDto.getMinuto())
-                .jogador(jogadorService.findByNome(golDto.getJogadorNome()))
-                .partida(partidaService.getPartidaById(golDto.getPartidaId()))
+                .minuto(golDto.minuto())
+                .jogador(jogadorService.findByNome(golDto.jogadorNome()))
+                .partida(partidaService.getPartidaById(golDto.partidaId()))
                 .build());
     }
 

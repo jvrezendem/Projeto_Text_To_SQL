@@ -19,9 +19,9 @@ public class CampeonatoService {
 
     public void createCampeonato(CampeonatoDto campeonatoDto) {
         campeonatoRepository.save(Campeonato.builder()
-                .nome(campeonatoDto.getNome())
-                .temporada(campeonatoDto.getTemporada())
-                .pais(campeonatoDto.getPais())
+                .nome(campeonatoDto.nome())
+                .temporada(campeonatoDto.temporada())
+                .pais(campeonatoDto.pais())
                 .build());
     }
 

@@ -25,13 +25,12 @@ public class JogadorService {
         List<JogadorDto> jogadoresDto = new ArrayList<>();
 
         for (Jogador jogador : jogadores) {
-            JogadorDto jogadorDto = JogadorDto.builder()
-                    .nome(jogador.getNome())
-                    .dataNascimento(jogador.getDataNascimento())
-                    .posicao(jogador.getPosicao())
-                    .nacionalidade(jogador.getNacionalidade())
-                    .nomeTime(jogador.getTime().getNome())
-                    .build();
+            JogadorDto jogadorDto = new JogadorDto(
+                    jogador.getNome(),
+                    jogador.getDataNascimento(),
+                    jogador.getPosicao(),
+                    jogador.getNacionalidade(),
+                    jogador.getTime().getNome());
             jogadoresDto.add(jogadorDto);
         }
 
@@ -44,11 +43,11 @@ public class JogadorService {
 
     public void createJogador(JogadorDto jogadorDto) {
         jogadorRepository.save(Jogador.builder()
-                .nome(jogadorDto.getNome())
-                .dataNascimento(jogadorDto.getDataNascimento())
-                .posicao(jogadorDto.getPosicao())
-                .nacionalidade(jogadorDto.getNacionalidade())
-                .time(timeService.findByNome(jogadorDto.getNomeTime()))
+                .nome(jogadorDto.nome())
+                .dataNascimento(jogadorDto.dataNascimento())
+                .posicao(jogadorDto.posicao())
+                .nacionalidade(jogadorDto.nacionalidade())
+                .time(timeService.findByNome(jogadorDto.nomeTime()))
                 .build());
     }
 

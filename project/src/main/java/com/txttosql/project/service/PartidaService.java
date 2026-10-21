@@ -21,11 +21,11 @@ public class PartidaService {
 
     public void createPartida(PartidaDto partidaDto) {
         partidaRepository.save(Partida.builder()
-                .data(partidaDto.getData())
-                .gols(partidaDto.getGols())
-                .timeCasa(timeService.findByNome(partidaDto.getTimeCasaNome()))
-                .timeVisitante(timeService.findByNome(partidaDto.getTimeVisitanteNome()))
-                .campeonato(campeonatoService.findByNome(partidaDto.getCampeonatoNome()))
+                .data(partidaDto.data())
+                .gols(partidaDto.gols())
+                .timeCasa(timeService.findByNome(partidaDto.timeCasaNome()))
+                .timeVisitante(timeService.findByNome(partidaDto.timeVisitanteNome()))
+                .campeonato(campeonatoService.findByNome(partidaDto.campeonatoNome()))
                 .build());
     }
 
