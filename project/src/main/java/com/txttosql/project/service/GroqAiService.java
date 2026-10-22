@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.txttosql.project.dto.Request.PerguntaRequestDto;
 import com.txttosql.project.dto.Response.RespostaResponseDto;
 import com.txttosql.project.dto.Response.ResultadoArqResponseDto;
+import com.txttosql.project.exception.IaConnectionException;
 import com.txttosql.project.exception.IlegalQuestionException;
 
 @Service
@@ -33,6 +34,7 @@ public class GroqAiService {
                 this.dataBseContextService = dataBseContextService;
         }
 
+        // metodo de teste da ia
         public RespostaResponseDto fazerPergunta(PerguntaRequestDto perguntaDto) {
                 return new RespostaResponseDto(perguntaDto.pergunta(), chatClient
                                 .prompt()
@@ -61,8 +63,12 @@ public class GroqAiService {
                                 .call()
                                 .content();
 
-                return new ResultadoArqResponseDto(pergunta.pergunta(), tratamentoSql(comandoSql),
-                                sqlExecutionService.executarSQL(tratamentoSql(comandoSql)));
+                try {
+                        return new ResultadoArqResponseDto(pergunta.pergunta(), tratamentoSql(comandoSql),
+                                        sqlExecutionService.executarSQL(tratamentoSql(comandoSql)));
+                } catch (Exception e) {
+                        throw new IaConnectionException();
+                }
         }
 
         public ResultadoArqResponseDto txtToSqlContext(PerguntaRequestDto pergunta) {
@@ -90,8 +96,12 @@ public class GroqAiService {
                                 .call()
                                 .content();
 
-                return new ResultadoArqResponseDto(pergunta.pergunta(), tratamentoSql(comandoSql),
-                                sqlExecutionService.executarSQL(tratamentoSql(comandoSql)));
+                try {
+                        return new ResultadoArqResponseDto(pergunta.pergunta(), tratamentoSql(comandoSql),
+                                        sqlExecutionService.executarSQL(tratamentoSql(comandoSql)));
+                } catch (Exception e) {
+                        throw new IaConnectionException();
+                }
 
         }
 
