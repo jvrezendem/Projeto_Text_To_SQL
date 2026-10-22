@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.txttosql.project.exception.InvalidSqlException;
+
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -17,7 +19,10 @@ public class SqlExecutionService {
 
     @Transactional(readOnly = true)
     public List<Map<String, Object>> executarSQL(String comandoSql) {
-        return jdbcTemplate.queryForList(comandoSql);
+        try {
+            return jdbcTemplate.queryForList(comandoSql);
+        } catch (InvalidSqlException e) {
+            throw new InvalidSqlException(comandoSql);
+        }
     }
-
 }
