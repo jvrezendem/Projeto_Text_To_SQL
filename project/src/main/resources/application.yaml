@@ -14,6 +14,7 @@ spring:
     import:
       - optional:file:./.env[.properties]
       - optional:file:./project/.env[.properties]
+      - "classpath:perguntas-padrao.yaml"
 
   datasource:
     url: ${BD_URL}
