@@ -52,4 +52,4 @@ Os requisitos detalhados estão na pasta [`Requisitos`](./Requisitos):
 
 ## Classificação
 
-O projeto utiliza requisitos funcionais (`RF`) e não funcionais (`RNF`). Os requisitos funcionais descrevem os comportamentos observáveis do sistema; os não funcionais estabelecem qualidades mensuráveis, como a acurácia das arquiteturas.
+O projeto utiliza requisitos funcionais (`RF`) e não funcionais (`RNF`). Os requisitos funcionais descrevem os comportamentos observáveis do sistema; os não funcionais estabelecem qualidades mensuráveis, como a acurácia das arquiteturas. 
