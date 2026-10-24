@@ -7,77 +7,77 @@ perguntas:
       JOIN "time" t ON t.id = j.time_id
       WHERE t.nome = 'Cruzeiro'
       ORDER BY j.nome
-    gabarito: >
+    gabarito:
       "registros": [
-		  {
-			    "id": "30000000-0000-0000-0000-000000227737",
-			    "nome": "Bruno Rodrigues"
-		  },
-		  {
-			    "id": "30000000-0000-0000-0000-000000236111",
-			    "nome": "Fabrício Bruno"
-		  },
-		  {
-			    "id": "30000000-0000-0000-0000-000000404202",
-			    "nome": "Felipe Morais"
-		  },
-		  {
-			    "id": "30000000-0000-0000-0000-000000210135",
-			    "nome": "Gerson"
-		  },
-		  {
-			    "id": "30000000-0000-0000-0000-000000286558",
-			    "nome": "João Marcelo"
-		  },
-		  {
-			    "id": "30000000-0000-0000-0000-000000363020",
-			    "nome": "Jonathan Jesus"
-		  },
-		  {
-			    "id": "30000000-0000-0000-0000-000000280978",
-			    "nome": "Kaio Jorge"
-		  },
-		  {
-			    "id": "30000000-0000-0000-0000-000000371534",
-			    "nome": "Keny Arroyo"
-		  },
-		  {
-			    "id": "30000000-0000-0000-0000-000000077577",
-			    "nome": "Lucas Romero"
-		  },
-		  {
-			    "id": "30000000-0000-0000-0000-000000176810",
-			    "nome": "Lucas Villalba"
-		  },
-		  {
-			    "id": "30000000-0000-0000-0000-000000268221",
-			    "nome": "Matheus Henrique"
-		  },
-		  {
-			    "id": "30000000-0000-0000-0000-000000216098",
-			    "nome": "Matheus Pereira"
-		  },
-		  {
-			    "id": "30000000-0000-0000-0000-000000337996",
-			    "nome": "Otávio Costa"
-		  },
-		  {
-			    "id": "30000000-0000-0000-0000-000000011632",
-			    "nome": "Wanderson"
-		  },
-		  {
-			    "id": "30000000-0000-0000-0000-000000304533",
-			    "nome": "Wesley Ribeiro"
-		  },
-		  {
-			    "id": "30000000-0000-0000-0000-000000212077",
-			    "nome": "William"
-		  },
-		  {
-			    "id": "30000000-0000-0000-0000-000000402423",
-			    "nome": "Zé Lucas"
-		  }
-		]
+      {
+          "id": "30000000-0000-0000-0000-000000227737",
+          "nome": "Bruno Rodrigues"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000236111",
+          "nome": "Fabrício Bruno"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000404202",
+          "nome": "Felipe Morais"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000210135",
+          "nome": "Gerson"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000286558",
+          "nome": "João Marcelo"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000363020",
+          "nome": "Jonathan Jesus"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000280978",
+          "nome": "Kaio Jorge"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000371534",
+          "nome": "Keny Arroyo"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000077577",
+          "nome": "Lucas Romero"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000176810",
+          "nome": "Lucas Villalba"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000268221",
+          "nome": "Matheus Henrique"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000216098",
+          "nome": "Matheus Pereira"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000337996",
+          "nome": "Otávio Costa"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000011632",
+          "nome": "Wanderson"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000304533",
+          "nome": "Wesley Ribeiro"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000212077",
+          "nome": "William"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000402423",
+          "nome": "Zé Lucas"
+      }
+    ]
 
   - id: maiores-artilheiros
     texto: "Quais são os 3 jogadores com mais gols?"
@@ -91,19 +91,19 @@ perguntas:
       LIMIT 3
     gabarito:
       "registros": [
-		    {
-			    "nome": "Kevin Viveros",
-			    "quantidade_gols": 9
-		    },
-		    {
-			    "nome": "Gabriel Barbosa",
-			    "quantidade_gols": 6
-		    },
-		    {
-			    "nome": "Kaio Jorge",
-			    "quantidade_gols": 6
-		    }
-		  ]
+        {
+          "nome": "Kevin Viveros",
+          "quantidade_gols": 9
+        },
+        {
+          "nome": "Gabriel Barbosa",
+          "quantidade_gols": 6
+        },
+        {
+          "nome": "Kaio Jorge",
+          "quantidade_gols": 6
+        }
+      ]
 
   - id: clubes-jogadores-argentinos
     texto: "Qual clube tem mais jogadores argentinos?"
