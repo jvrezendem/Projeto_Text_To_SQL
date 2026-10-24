@@ -26,7 +26,7 @@ public class PartidaController {
     private final PartidaService partidaService;
 
     @GetMapping("/allPartidas")
-    public ResponseEntity<List<Partida>> getAllPartidas() {
+    public ResponseEntity<List<PartidaDto>> getAllPartidas() {
         return new ResponseEntity<>(partidaService.getAllPartidas(), HttpStatus.OK);
     }
 

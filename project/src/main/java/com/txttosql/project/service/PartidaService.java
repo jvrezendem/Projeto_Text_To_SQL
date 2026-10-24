@@ -1,5 +1,6 @@
 package com.txttosql.project.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -38,8 +39,21 @@ public class PartidaService {
         return partidaRepository.findById(id).orElse(null);
     }
 
-    public List<Partida> getAllPartidas() {
-        return partidaRepository.findAll();
+    public List<PartidaDto> getAllPartidas() {
+        List<Partida> listaPartidas = partidaRepository.findAll();
+        List<PartidaDto> listaPartidasDto = new ArrayList<>();
+
+        for (Partida partida : listaPartidas) {
+            PartidaDto partidaDto = new PartidaDto(
+                    partida.getData(),
+                    partida.getTimeCasa().getNome(),
+                    partida.getTimeVisitante().getNome(),
+                    partida.getCampeonato().getNome(),
+                    partida.getGolCasa(),
+                    partida.getGolVisitante());
+            listaPartidasDto.add(partidaDto);
+        }
+        return listaPartidasDto;
     }
 
 }

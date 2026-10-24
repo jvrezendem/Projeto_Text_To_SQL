@@ -28,8 +28,20 @@ public class GolService {
         return golRepository.findById(id).orElse(null);
     }
 
-    public List<Gol> getAllGols() {
-        return golRepository.findAll();
+    public List<GolDto> getAllGols() {
+        List<Gol> listaGols = golRepository.findAll();
+        List<GolDto> listaGolsDto = new java.util.ArrayList<>();
+
+        for (Gol gol : listaGols) {
+            GolDto golDto = new GolDto(
+                    gol.getJogador().getNome(),
+                    gol.getPartida().getId(),
+                    gol.getPartida().getCampeonato().getNome(),
+                    gol.getPartida().getTimeCasa().getNome(),
+                    gol.getMinuto());
+            listaGolsDto.add(golDto);
+        }
+        return listaGolsDto;
     }
 
     public void createGol(GolDto golDto) {

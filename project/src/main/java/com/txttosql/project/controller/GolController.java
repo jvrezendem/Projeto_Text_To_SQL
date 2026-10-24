@@ -26,7 +26,7 @@ public class GolController {
     private final GolService golService;
 
     @GetMapping ("/allGols")
-    public ResponseEntity<List<Gol>> getAllGols() {
+    public ResponseEntity<List<GolDto>> getAllGols() {
        return new ResponseEntity<>(golService.getAllGols(), HttpStatus.OK);
     }
 
