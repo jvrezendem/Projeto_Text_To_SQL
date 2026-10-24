@@ -6,6 +6,7 @@ import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.openai.errors.OpenAIIoException;
 import com.txttosql.project.dto.Request.PerguntaRequestDto;
 import com.txttosql.project.dto.Response.RespostaResponseDto;
 import com.txttosql.project.dto.Response.ResultadoArqResponseDto;
@@ -57,18 +58,19 @@ public class GroqAiService {
                                 - não utilize Markdown ou blocos de código.
                                 """;
 
-                String comandoSql = chatClient
-                                .prompt(promptNoContext)
-                                .user(pergunta.pergunta())
-                                .call()
-                                .content();
-
-                try {
-                        return new ResultadoArqResponseDto(pergunta.pergunta(), tratamentoSql(comandoSql),
-                                        sqlExecutionService.executarSQL(tratamentoSql(comandoSql)));
-                } catch (Exception e) {
+                String comandoSql;
+                try{
+                        comandoSql = chatClient
+                                        .prompt(promptNoContext)
+                                        .user(pergunta.pergunta())
+                                        .call()
+                                        .content();
+                }catch (OpenAIIoException e) {
                         throw new IaConnectionException();
                 }
+
+                return new ResultadoArqResponseDto(pergunta.pergunta(), tratamentoSql(comandoSql),
+                                        sqlExecutionService.executarSQL(tratamentoSql(comandoSql)));
         }
 
         public ResultadoArqResponseDto txtToSqlContext(PerguntaRequestDto pergunta) {
@@ -89,19 +91,20 @@ public class GroqAiService {
 
                                 contexto: %s
                                 """.formatted(contexto);
-
-                String comandoSql = chatClient
+                String comandoSql;
+                try{
+                        comandoSql = chatClient
                                 .prompt(promptNoContext)
                                 .user(pergunta.pergunta())
                                 .call()
                                 .content();
-
-                try {
-                        return new ResultadoArqResponseDto(pergunta.pergunta(), tratamentoSql(comandoSql),
-                                        sqlExecutionService.executarSQL(tratamentoSql(comandoSql)));
-                } catch (Exception e) {
+                } catch (OpenAIIoException e) {
                         throw new IaConnectionException();
                 }
+
+                
+                return new ResultadoArqResponseDto(pergunta.pergunta(), tratamentoSql(comandoSql),
+                                        sqlExecutionService.executarSQL(tratamentoSql(comandoSql)));
 
         }
 
