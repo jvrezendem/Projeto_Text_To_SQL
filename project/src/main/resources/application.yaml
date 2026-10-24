@@ -1,3 +1,37 @@
 spring:
   application:
     name: project
+
+  ai:
+    openai:
+      api-key: ${GROQ_API_KEY}
+      base-url: https://api.groq.com/openai/v1
+      chat:   
+        model: openai/gpt-oss-120b
+        temperature: 0.7
+
+  config:
+    import:
+      - optional:file:./.env[.properties]
+      - optional:file:./project/.env[.properties]
+      - "classpath:perguntas-padrao.yaml"
+
+  datasource:
+    url: ${BD_URL}
+    username: ${BD_USER}
+    password: ${BD_PASSWORD}
+    
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        "[format_sql]": true
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+
+server:
+  port: ${PORT:8081}

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#161616">
+  <meta name="description" content="Consultas em linguagem natural sobre dados de futebol.">
+  <title>Chat</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body data-page="chat">
+  <a class="skip-link" href="#main">Ir para o conteúdo</a>
+  <header id="page-navigation" class="page-navigation" aria-label="Navegação principal"></header>
+  <div class="workspace">
+    
+    <main id="main" class="main chat-main">
+      <div class="page-heading chat-heading">
+        <h1>Chat</h1>
+        <button id="clear-chat" class="button secondary" type="button">Nova conversa</button>
+      </div>
+      <div class="chat-toolbar">
+        <label class="model-control" for="chat-model"><span>Arquitetura</span>
+          <select id="chat-model"><option value="context">Com contexto do banco</option><option value="direct">Sem contexto do banco</option></select>
+        </label>
+      </div>
+      <section id="chat-messages" class="chat-messages" aria-label="Conversa" aria-live="polite" aria-relevant="additions"></section>
+      <div class="composer-area">
+        <form id="chat-form" class="composer">
+          <label class="sr-only" for="chat-input">Sua pergunta sobre o banco de futebol</label>
+          <textarea id="chat-input" rows="2" maxlength="4000" placeholder="Digite sua pergunta…" required></textarea>
+          <div class="composer-bottom"><span><kbd>Enter</kbd> para enviar <span class="separator">·</span> <kbd>Shift + Enter</kbd> para uma nova linha</span><button id="send-chat" class="button primary send-button" type="submit">Enviar</button></div>
+        </form>
+      </div>
+    </main>
+  </div>
+  <dialog id="record-dialog" class="record-dialog" aria-labelledby="record-dialog-title"><div class="dialog-header"><h2 id="record-dialog-title">Detalhes do registro</h2><button class="icon-button" type="button" data-close-dialog aria-label="Fechar detalhes">×</button></div><pre id="record-json"></pre></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <noscript>Ative o JavaScript para consultar os dados e enviar perguntas.</noscript>
+</body>
+</html>

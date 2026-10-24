@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#161616">
+  <title>Dados do banco</title><link rel="stylesheet" href="assets/styles.css"><script src="assets/app.js" defer></script>
+</head>
+<body data-page="data">
+  <a class="skip-link" href="#main">Ir para o conteúdo</a><header id="page-navigation" class="page-navigation" aria-label="Navegação principal"></header>
+  <div class="workspace">
+    <main id="main" class="main">
+      <div class="page-heading"><h1>Dados do banco</h1></div>
+      <div id="table-tabs" class="table-tabs" role="group" aria-label="Selecionar tabela"></div>
+      <section class="panel data-panel" aria-labelledby="table-title">
+        <div class="panel-heading"><div><h2 id="table-title">Times</h2></div><button id="refresh-data" class="button secondary" type="button" data-icon="refresh">Atualizar</button></div>
+        <div class="data-tools"><label class="search-field"><span data-icon="search"></span><span class="sr-only">Buscar na tabela selecionada</span><input id="table-search" type="search" placeholder="Buscar nos registros…" autocomplete="off"></label><span id="table-total" class="muted" role="status">Carregando…</span></div>
+        <div id="data-content" aria-live="polite"></div>
+        <div class="pagination"><span id="pagination-info" class="muted"></span><div class="pagination-buttons"><button id="previous-page" type="button" class="button secondary" data-icon="chevron-left">Anterior</button><button id="next-page" type="button" class="button secondary" data-icon="chevron-right">Próxima</button></div></div>
+      </section>
+    </main>
+  </div>
+  <dialog id="record-dialog" class="record-dialog" aria-labelledby="record-dialog-title"><div class="dialog-header"><h2 id="record-dialog-title">Detalhes do registro</h2><button class="icon-button" type="button" data-close-dialog aria-label="Fechar detalhes">×</button></div><pre id="record-json"></pre></dialog><div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>

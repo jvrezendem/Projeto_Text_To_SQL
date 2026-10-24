@@ -1,0 +1,175 @@
+perguntas:
+  - id: jogadores-cruzeiro
+    texto: "Quais são os jogadores do time Cruzeiro?"
+    sql-referencia: >
+      SELECT j.nome
+      FROM jogador j
+      JOIN "time" t ON t.id = j.time_id
+      WHERE t.nome = 'Cruzeiro'
+      ORDER BY j.nome
+    gabarito:
+      "registros": [
+      {
+          "id": "30000000-0000-0000-0000-000000227737",
+          "nome": "Bruno Rodrigues"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000236111",
+          "nome": "Fabrício Bruno"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000404202",
+          "nome": "Felipe Morais"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000210135",
+          "nome": "Gerson"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000286558",
+          "nome": "João Marcelo"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000363020",
+          "nome": "Jonathan Jesus"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000280978",
+          "nome": "Kaio Jorge"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000371534",
+          "nome": "Keny Arroyo"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000077577",
+          "nome": "Lucas Romero"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000176810",
+          "nome": "Lucas Villalba"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000268221",
+          "nome": "Matheus Henrique"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000216098",
+          "nome": "Matheus Pereira"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000337996",
+          "nome": "Otávio Costa"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000011632",
+          "nome": "Wanderson"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000304533",
+          "nome": "Wesley Ribeiro"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000212077",
+          "nome": "William"
+      },
+      {
+          "id": "30000000-0000-0000-0000-000000402423",
+          "nome": "Zé Lucas"
+      }
+    ]
+
+  - id: maiores-artilheiros
+    texto: "Quais são os 3 jogadores com mais gols?"
+    sql-referencia: >
+      SELECT j.nome, COUNT(g.id) AS quantidade_gols
+      FROM jogador j
+      JOIN gol g ON g.jogador_id = j.id
+      WHERE g.gol_contra = FALSE
+      GROUP BY j.id, j.nome
+      ORDER BY quantidade_gols DESC, j.nome ASC
+      LIMIT 3
+    gabarito:
+      "registros": [
+        {
+          "nome": "Kevin Viveros",
+          "quantidade_gols": 9
+        },
+        {
+          "nome": "Gabriel Barbosa",
+          "quantidade_gols": 6
+        },
+        {
+          "nome": "Kaio Jorge",
+          "quantidade_gols": 6
+        }
+      ]
+
+  - id: clubes-jogadores-argentinos
+    texto: "Qual clube tem mais jogadores argentinos?"
+    sql-referencia: >
+      SELECT t.nome, COUNT(j.id) AS quantidade_jogadores
+      FROM "time" t
+      JOIN jogador j ON j.time_id = t.id
+      WHERE j.nacionalidade = 'Argentina'
+      GROUP BY t.id, t.nome
+      ORDER BY quantidade_jogadores DESC, t.nome ASC
+      LIMIT 1;
+
+    gabarito:
+      "registros": [
+        {
+          "nome": "Fluminense",
+          "quantidade_jogadores": 3
+        }
+      ]
+      
+
+
+  - id: vitorias-cruzeiro
+    texto: "Quantas partidas o time Cruzeiro ganhou no Campeonato Brasileiro Série A?"
+    sql-referencia: >
+      SELECT COUNT(*) AS quantidade_vitorias
+      FROM partida p
+      JOIN campeonato c ON c.id = p.campeonato_id
+      JOIN "time" casa ON casa.id = p.time_casa_id
+      JOIN "time" visitante ON visitante.id = p.time_visitante_id
+      WHERE c.nome = 'Campeonato Brasileiro Série A'
+        AND (
+          (casa.nome = 'Cruzeiro' AND p.gols_casa > p.gols_visitante)
+          OR
+          (visitante.nome = 'Cruzeiro' AND p.gols_visitante > p.gols_casa)
+        )
+
+    gabarito:
+      "registros": [
+        {
+          "quantidade_vitorias": 7
+        }
+      ]
+
+  - id: time-mais-vitorias
+    texto: "Qual o time com mais vitórias?"
+    sql-referencia: >
+      SELECT vencedor, COUNT(*) AS quantidade_vitorias
+      FROM (
+        SELECT CASE
+          WHEN p.gols_casa > p.gols_visitante THEN casa.nome
+          WHEN p.gols_visitante > p.gols_casa THEN visitante.nome
+        END AS vencedor
+        FROM partida p
+        JOIN "time" casa ON casa.id = p.time_casa_id
+        JOIN "time" visitante ON visitante.id = p.time_visitante_id
+        WHERE p.gols_casa <> p.gols_visitante
+      ) vitorias
+      GROUP BY vencedor
+      ORDER BY quantidade_vitorias DESC, vencedor ASC
+      LIMIT 1
+
+    gabarito:
+      "registros": [
+        {
+          "vencedor": "Flamengo",
+          "quantidade_vitorias": 8
+        }
+      ]

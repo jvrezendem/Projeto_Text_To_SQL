@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#161616">
+  <title>Perguntas padrão</title><link rel="stylesheet" href="assets/styles.css"><script src="assets/app.js" defer></script>
+</head>
+<body data-page="questions">
+  <a class="skip-link" href="#main">Ir para o conteúdo</a><header id="page-navigation" class="page-navigation" aria-label="Navegação principal"></header>
+  <div class="workspace">
+    <main id="main" class="main">
+      <div class="page-heading"><h1>Perguntas padrão</h1><button class="button primary" type="button" data-run-all>Executar todas</button></div>
+      <div id="batch-status" class="batch-status" role="status" hidden></div>
+      <div class="questions-layout"><section class="question-picker" aria-label="Perguntas disponíveis"><div id="question-list"></div></section><section id="question-detail" class="question-detail" aria-live="polite" aria-label="Resultado da pergunta selecionada"></section></div>
+    </main>
+  </div>
+  <dialog id="record-dialog" class="record-dialog" aria-labelledby="record-dialog-title"><div class="dialog-header"><h2 id="record-dialog-title">Detalhes do registro</h2><button class="icon-button" type="button" data-close-dialog aria-label="Fechar detalhes">×</button></div><pre id="record-json"></pre></dialog><div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>
