@@ -47,9 +47,8 @@ public class QuestoesPadraoService {
                 semContexto.sql(),
                 semContexto.registros(),
                 comContexto.sql(),
-                comContexto.registros(),
-                status(semContexto, gabarito),
-                status(comContexto, gabarito));
+                comContexto.registros()
+        );
     }
 
     private ResultadoTentativa executarTentativa(Supplier<ResultadoArqResponseDto> chamada) {
@@ -63,37 +62,6 @@ public class QuestoesPadraoService {
         }
     }
 
-    private String status(ResultadoTentativa resultado, List<Map<String, Object>> gabarito) {
-        if (resultado.erro() != null) {
-            return "SQL inválido";
-        }
-        if (resultado.registros().isEmpty()) {
-            return "Sem registros";
-        }
-        return compararResultado(resultado.registros(), gabarito) ? "Correto" : "Incorreto";
-    }
-
-    private boolean compararResultado(List<Map<String, Object>> registros, List<Map<String, Object>> gabarito) {
-        if (registros.size() != gabarito.size()) {
-            return false;
-        }
-
-        ArrayList<UUID> idEsperados = new ArrayList<>();
-        
-        for(Map<String, Object> registro : gabarito) {
-            if(registro.get("id") != null) {
-                idEsperados.add(UUID.fromString(registro.get("id").toString()));
-            }
-        }
-
-        // Remove cada ocorrência para também conferir a quantidade de registros repetidos.
-        for (Map<String, Object> registro : registros) {
-            if (!idEsperados.remove(registro.get("id"))) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     private record ResultadoTentativa(String sql, List<Map<String, Object>> registros, String erro) {
     }
