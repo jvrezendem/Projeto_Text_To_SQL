@@ -265,17 +265,12 @@ function responseCard(mode, response = {}) {
     card.append(header, loading("Gerando e executando a consulta…"));
     return card;
   }
-  if (response.status) header.append(statusBadge(response.status));
   card.append(header);
   if (response.error) { card.append(errorBox(response.error)); return card; }
   card.append(sqlBlock(response.sql));
   const rows = Array.isArray(response.records) ? response.records : [];
   card.append(element("div", "result-caption", `${rows.length} ${rows.length === 1 ? "registro retornado" : "registros retornados"}`));
-  const invalidSql = String(response.status || "").toLocaleLowerCase("pt-BR").includes("inválido");
-  card.append(recordsTable(rows, invalidSql ? {
-    emptyTitle: "SQL inválido",
-    emptyDescription: "O backend rejeitou esta consulta. Confira o SQL retornado acima."
-  } : {}));
+  card.append(recordsTable(rows));
   return card;
 }
 
@@ -451,7 +446,7 @@ async function runEvaluation(question) {
   updateEvaluationUI();
   try {
     const data = await apiRequest(`/questoes-padrao/${question.id}`);
-    if (!data || typeof data !== "object" || !("statusNoContext" in data) || !("statusContext" in data)) throw new Error("A resposta recebida não contém os resultados das duas arquiteturas.");
+    if (!data || typeof data !== "object") throw new Error("A API retornou uma resposta inválida.");
     evaluations[question.id] = { data, checkedAt: new Date().toISOString() };
   } catch (error) { evaluations[question.id] = { error: error.message, checkedAt: new Date().toISOString() }; }
   finally {
@@ -533,8 +528,8 @@ function renderQuestionDetail() {
   const data = entry.data;
   const grid = element("div", "response-grid dual");
   grid.append(
-    responseCard("direct", { sql: data.sqlNoContext, records: data.registrosNoContext, status: data.statusNoContext }),
-    responseCard("context", { sql: data.sqlContext, records: data.registrosContext, status: data.statusContext })
+    responseCard("direct", { sql: data.sqlNoContext, records: data.registrosNoContext }),
+    responseCard("context", { sql: data.sqlContext, records: data.registrosContext })
   );
   detail.append(grid);
   const reference = element("details", "panel reference-details");
