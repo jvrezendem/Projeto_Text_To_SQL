@@ -15,7 +15,7 @@ public class ProjectApplication {
 
 		int port = ((ServletWebServerApplicationContext) context).getWebServer().getPort();
 		//printa o endereço da aplicação
-		System.out.println(port);
+		System.out.println("http://localhost:" + port);
 	}
 
 }

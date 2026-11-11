@@ -6,6 +6,76 @@ Projeto para consultar dados de um banco PostgreSQL por meio de perguntas em lin
 
 Permitir que o usuário escreva uma pergunta sobre os dados e receba os registros correspondentes sem precisar escrever SQL manualmente. Antes da execução, toda consulta gerada deve ser validada para garantir que somente operações de leitura permitidas cheguem ao banco de dados.
 
+## Tecnologias utilizadas
+
+| Tecnologia | Versão/configuração | Utilização |
+|---|---|---|
+| Java | 21 | Linguagem e plataforma da aplicação. |
+| Spring Boot | 4.1.1 | Inicialização, configuração e execução do servidor. |
+| Spring Web MVC | Incluído pelo Spring Boot | Endpoints HTTP/REST e entrega dos arquivos da interface. |
+| Spring Data JPA | Incluído pelo Spring Boot | Persistência e acesso ao PostgreSQL por meio de JPA. |
+| PostgreSQL | Versão definida pelo ambiente | Banco relacional da aplicação. |
+| Flyway | Incluído pelo Spring Boot | Criação da estrutura e carga de dados pelas migrations em `src/main/resources/db/migration`. |
+| Spring AI | 2.0.1 | Integração com o modelo de chat por uma API compatível com OpenAI. |
+| Groq API | Modelo `openai/gpt-oss-120b` | Geração das consultas SQL nas arquiteturas com e sem contexto. |
+| Springdoc OpenAPI | 3.1.0 | Documentação interativa dos endpoints. |
+| Lombok | Gerenciado pelo Spring Boot | Redução de código repetitivo em classes Java. |
+| HTML, CSS e JavaScript | JavaScript sem framework | Interface gráfica, servida pelo próprio Spring Boot. |
+| Maven | Não fixada no projeto | Gerenciamento de dependências, testes e build. |
+
+## Como executar
+
+### Pré-requisitos
+
+- JDK 21 instalado e disponível no `PATH`.
+- Maven instalado e disponível no `PATH`.
+- Uma instância PostgreSQL acessível.
+- Uma chave de API da Groq.
+
+### Configuração
+
+1. Crie um banco PostgreSQL. Por exemplo, no `psql`:
+
+	```sql
+	CREATE DATABASE text_to_sql;
+	```
+
+2. Na pasta `project`, crie ou ajuste o arquivo `.env` com as configurações abaixo. Altere usuário, senha, host, porta ou nome do banco conforme o seu ambiente:
+
+	```properties
+	GROQ_API_KEY=sua_chave_groq
+	BD_URL=jdbc:postgresql://localhost:5432/text_to_sql
+	BD_USER=seu_usuario_postgres
+	BD_PASSWORD=sua_senha_postgres
+	PORT=8081
+	```
+
+	`PORT` é opcional e, se omitido, a aplicação usa a porta `8081`. O `.env` está listado no `.gitignore`; não versione chaves ou senhas.
+
+### Inicialização
+
+No terminal, execute:
+
+```bash
+cd project
+mvn spring-boot:run
+```
+
+Na primeira inicialização, o Flyway aplica as migrations e carrega os dados de referência do domínio de futebol. A interface fica disponível em [http://localhost:8081](http://localhost:8081) (ou na porta configurada em `PORT`). A documentação interativa da API fica em `http://localhost:8081/swagger-ui/index.html`.
+
+Para executar os testes e gerar o pacote:
+
+```bash
+mvn test
+mvn clean package
+```
+
+O JAR gerado pode ser iniciado, a partir da pasta `project`, com:
+
+```bash
+java -jar target/project-0.0.1-SNAPSHOT.jar
+```
+
 ## Arquiteturas de geração
 
 O projeto utiliza duas arquiteturas de Text-to-SQL, comparadas sobre a mesma pergunta:
