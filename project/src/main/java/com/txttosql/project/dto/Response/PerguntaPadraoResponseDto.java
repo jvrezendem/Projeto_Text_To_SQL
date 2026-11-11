@@ -10,9 +10,7 @@ public record PerguntaPadraoResponseDto(
     String sqlNoContext,
     List<Map<String, Object>> registrosNoContext,
     String sqlContext,
-    List<Map<String, Object>> registrosContext,
-    String statusNoContext,
-    String statusContext
+    List<Map<String, Object>> registrosContext
 ) {
 
 }
