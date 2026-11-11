@@ -2,7 +2,7 @@ perguntas:
   - id: jogadores-cruzeiro
     texto: "Quais são os jogadores do time Cruzeiro?"
     sql-referencia: >
-      SELECT j.nome
+      SELECT j.nome, j.id
       FROM jogador j
       JOIN "time" t ON t.id = j.time_id
       WHERE t.nome = 'Cruzeiro'
